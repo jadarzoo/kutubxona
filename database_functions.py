@@ -56,3 +56,31 @@ def show_students():
 
     except:
         print("Database ga ulanishda xatilik")
+
+def show_events():
+    global cursor
+    text = "select events.id, stdents.name, books.name, events from books"
+    try:
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            passeord="0000",
+            databse="library"
+        )
+        cursor = connection.cursor()
+        try:
+            cursor.execute(text)
+        except:
+            print("Bazaga murojat qilishda xatolik")
+
+        try:
+            result = cursor.fetchall()
+            return result
+        except:
+            print("Natija olishda xatolik")
+
+        cursor.close()
+        connection.close()
+
+    except:
+        print("Database ga ulanishda xatilik")
